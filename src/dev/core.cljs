@@ -1,6 +1,7 @@
 (ns dev.core
   (:require
    [dev.spectre]
+   [dev.rum]
    ))
 
 (enable-console-print!)
