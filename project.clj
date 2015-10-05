@@ -9,7 +9,8 @@
                  [devcards "0.2.0-1"]
                  [sablono "0.3.4"]
                  [com.rpl/specter "0.7.1"]
-                 [rum "0.4.1"]]
+                 [rum "0.4.1"]
+                 [vlad "3.3.0"]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
             [lein-figwheel "0.4.0"]]
