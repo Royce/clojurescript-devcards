@@ -1,4 +1,4 @@
-(ns dev.spectre
+(ns dev.spectre_vlad_event_bus_global_state
   (:require
    [com.rpl.specter :as s :refer [select setval ALL]]
    [rum.core :as rum]

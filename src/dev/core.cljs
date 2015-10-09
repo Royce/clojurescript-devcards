@@ -1,6 +1,7 @@
 (ns dev.core
   (:require
    [dev.spectre]
+   [dev.spectre_vlad_event_bus_global_state]
    [dev.rum]
    [dev.validation]
    ))
