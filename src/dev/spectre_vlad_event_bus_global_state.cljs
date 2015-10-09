@@ -6,11 +6,10 @@
    [clojure.string]
    [vlad.core :as vlad]
    [dev.validation :refer [condition numeric-string phone-number-mask]]
-   [cljs.test])
+   )
   (:require-macros
-   [cljs.test :refer [is testing]]
    [cljs.core.async.macros :refer [go-loop]]
-   [devcards.core :as dc :refer [defcard deftest]]))
+   [devcards.core :as dc :refer [defcard]]))
 
 (enable-console-print!)
 
