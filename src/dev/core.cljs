@@ -2,6 +2,7 @@
   (:require
    [dev.spectre]
    [dev.rum]
+   [dev.validation]
    ))
 
 (enable-console-print!)

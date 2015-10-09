@@ -5,6 +5,7 @@
    [cljs.core.async :as async]
    [clojure.string]
    [vlad.core :as vlad]
+   [dev.validation :refer [condition numeric-string phone-number-mask]]
    [cljs.test])
   (:require-macros
    [cljs.test :refer [is testing]]
@@ -14,26 +15,10 @@
 (enable-console-print!)
 
 
-(def numeric (vlad/matches #"[0-9]*"))
-(def phone-number (vlad/matches #"([0-9+ \(\)])*"))
+(def masks {[:form :age] (numeric-string)
+            [:form :phone] phone-number-mask})
 
-(deftest validations
-  "numeric" (testing
-              (is (vlad/valid? numeric ""))
-              (is (vlad/valid? numeric "0"))
-              (is (vlad/valid? numeric "23"))
-              (is ((comp not vlad/valid?) numeric "a"))
-              )
-  "phone" (testing
-            (is (vlad/valid? phone-number ""))
-            (is (vlad/valid? phone-number "+614"))
-            (is (vlad/valid? phone-number "0405 018 016"))
-            (is (vlad/valid? phone-number "(08) 0501 8016"))
-            (is ((comp not vlad/valid?) phone-number "+A"))
-            ))
 
-(def masks {[:form :age] numeric
-            [:form :phone] phone-number})
 
 
 (defonce state (atom {:_counter 0
