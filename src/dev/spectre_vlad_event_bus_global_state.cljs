@@ -16,43 +16,50 @@
 
 (def masks {[:form :age] (numeric-string)
             [:form :phone] phone-number-mask})
-;; (def required {[:form]})
 
-(defn new-state [state [_ path value] {:keys [masks]}]
+(defn setval- [state path value masks]
   (let [mask (condition (vlad/present) (masks path))
         mask-validation (vlad/validate (or mask vlad/valid) value)
         state (if (empty? mask-validation)
-                (setval path value state)
-                (setval [:warning]
+                (-> state
+                    (->> (setval path value))
+                    (dissoc :_warning))
+                (setval (vec (concat [:_warning] path))
                         (map vlad.core/english-translation mask-validation)
                         state))]
     state))
 
-(defcard n (new-state {:form {:age "12" :phone "95359513"}}
-                      [:setval [:form :age] "a"]
-                      {:masks masks}))
+(defcard setval (-> {:form {:age "12" :phone "95359513"}}
+                       (setval- [:form :age] "" masks)
+                       (setval- [:form :age] "a" masks)
+                       (setval- [:form :age] "23" masks)
+                       ))
 
+(defn new-state [state [event path data] {:keys [masks]}]
+  (case event
+    :setval (setval- state path data masks)))
 
-(defonce state (atom {:_counter 0
-                      :heading "The heading"
-                      :form {:name "Jack" :age "" :phone ""}
-                      :_warning {:form {:age "Too young"}}
-                      :_error {}}))
+(defonce state (atom {:heading "The heading"
+                      :form {:name "Jack"
+                             :age ""
+                             :phone ""}
+                      }))
 
 (defonce bus
   (let [ch (async/chan)]
     (go-loop []
              (let [msg (async/<! ch)]
                (println msg)
-               (swap! state #(new-state % msg {:masks masks})))
+               (swap! state new-state msg {:masks masks})
+               (swap! state assoc :_render (js/Math.random)))
              (recur))
     ch))
 
 
 (rum/defc text < rum/static [state path bus {:keys [label]}]
   (let [id (clojure.string/join path)
-        error   (first (select path (state :error)))
-        warning (first (select path (state :warning)))]
+        error   (first (select path (state :_error)))
+        warning (first (select path (state :_warning)))]
     [:div
      [:label {:for id} label]
      [:input {:id id
