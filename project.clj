@@ -10,7 +10,9 @@
                  [sablono "0.3.4"]
                  [com.rpl/specter "0.7.1"]
                  [rum "0.4.1"]
-                 [vlad "3.3.0"]]
+                 [vlad "3.3.0"]
+                 [org.omcljs/om "0.9.0-SNAPSHOT"]
+                 [datascript "0.13.1"]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
             [lein-figwheel "0.4.0"]]

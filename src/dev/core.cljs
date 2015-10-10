@@ -3,6 +3,7 @@
    [dev.spectre]
    [dev.spectre_vlad_event_bus_global_state]
    [dev.rum]
+   [dev.om]
    [dev.validation]
    ))
 
