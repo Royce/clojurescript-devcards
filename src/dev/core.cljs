@@ -5,10 +5,14 @@
    [dev.rum]
    [dev.om]
    [dev.om-datascript]
+   [dev.om-tutorial.basic]
+   [dev.om-tutorial.components]
+   [dev.om-tutorial.components-nesting-experiment]
+   [dev.om-tutorial.queries-with-unions]
+   [dev.om-tutorial.remote_autocomplete]
    [dev.validation]
    ))
 
-(enable-console-print!)
 
 ;; remember to run lein figwheel and then browse to
 ;; http://localhost:3449/

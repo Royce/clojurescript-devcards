@@ -5,17 +5,20 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.122"]
-                 [devcards "0.2.0-1"]
-                 [sablono "0.3.4"]
+                 [org.clojure/clojurescript "1.7.170"]
+                 [devcards "0.2.1-2"]
+                 [sablono "0.5.3"]
+                 [cljsjs/react "0.14.3-0"]
+                 [cljsjs/react-dom "0.14.3-1"]
+                 [cljsjs/react-dom-server "0.14.3-0"]
                  [com.rpl/specter "0.7.1"]
-                 [rum "0.4.1"]
+                 [rum "0.6.0"]
                  [vlad "3.3.0"]
-                 [org.omcljs/om "0.9.0-SNAPSHOT"]
+                 [org.omcljs/om "1.0.0-alpha29-SNAPSHOT"]
                  [datascript "0.13.1"]]
 
-  :plugins [[lein-cljsbuild "1.1.0"]
-            [lein-figwheel "0.4.0"]]
+  :plugins [[lein-cljsbuild "1.1.1"]
+            [lein-figwheel "0.5.0-2"]]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                     "target"]
